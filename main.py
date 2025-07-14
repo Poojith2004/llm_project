@@ -1,9 +1,11 @@
-from financial_qa.vectorstore import load_vectorstore
-from financial_qa.qa_engine import ask_financial_question
+from financial_qa import ask_financial_question, load_vectorstore
 
-db = load_vectorstore()
+if __name__ == "__main__":
+    question = input("Enter prompt:")
 
-question = input("Enter prompt:")
-answer = ask_financial_question(question, db)
-
-print("🧠 Answer:\n", answer)
+    try:
+        db = load_vectorstore()
+        answer = ask_financial_question(question, db)
+        print("🧠 Answer:\n", answer)
+    except Exception as e:
+        print("❌ Error:", str(e))
